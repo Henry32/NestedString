@@ -20,22 +20,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.test()
         return true
     }
-    func check(hi: String) -> NSRange {
+    func check(hi: String) -> [NSRange] {
         let regex = try! NSRegularExpression(pattern: "([\\\(hi)])", options: [])
         
         let input = "I'm looking for { {[]} ][ } {}"
         let range = NSRange(location: 0, length: input.utf16.count)
-        
+        var arrayRange: [NSRange]
         for match in regex.matches(in: input, options: [], range: range) {
             print(match.range)
+            arrayRange.append(match.range)
         }
-        return range
+        return arrayRange
     }
     
     func checkString(string: String) {
         // find {
         let rang1 = self.check(hi: "{")
         // find }
+        let rang2 = self.check(hi: "}")
         // if number of character between is odd then fail else true
         
         // find [
@@ -52,6 +54,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // find }
         // if number of character between is odd then fail else true
+    }
+    
+    func checkCorrect(rang1: [NSRange], rang2: [NSRange]) -> Bool {
+        var correctString = false
+        for i in 0..<rang1.count {
+            for j in 0..<rang2.count {
+                if (rang1[i].location - rang2[j].location) % 2 == 0 {
+                    if
+                }
+            }
+        }
+        
     }
     
     func test() {
