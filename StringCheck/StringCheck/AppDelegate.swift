@@ -58,14 +58,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func checkCorrect(rang1: [NSRange], rang2: [NSRange]) -> Bool {
         var correctString = false
+        var last = 0
         for i in 0..<rang1.count {
-            for j in 0..<rang2.count {
+            for j in 0..<(last == 0 ? 0 : rang2.count) {
                 if (rang1[i].location - rang2[j].location) % 2 == 0 {
-                    if
+                    last = j
+                    break
                 }
             }
         }
-        
+        return correctString
     }
     
     func test() {
